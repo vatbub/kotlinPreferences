@@ -42,7 +42,7 @@ import java.io.File
 // Do this somewhere globally, so that you have access to the preferences
 // object everywhere
 
-// specify the backing storage
+// specify the backing storage (For Android see below!!)
 val keyValueProvider = PropertiesFileKeyValueProvider(File("mySettings.properties"))
 val preferences = Preferences(keyValueProvider)
 
@@ -102,6 +102,13 @@ Each of them is appropriate for different situations:
 | `PropertiesFileKeyValueProvider` (This is the provider used in the examples above) | Java/Kotlin desktop applications                                      | A Java `*.properties`-file                   |
 | `SharedPreferencesKeyValueProvider`                                                | Android applications                                                  | An instance of Android's `SharedPreferences` |
 | `MemoryKeyValueProvider`                                                           | Any Java/Kotlin application which does not require persistent storage | An plain old `HashMap`                       |
+
+Specifying the `KeyValueProvider` you want is easy, just do one of the following:
+- `val preferences = Preferences(PropertiesFileKeyValueProvider(File("mySettings.properties")))`
+- `val preferences = Preferences(SharedPreferencesKeyValueProvider(context.sharedPreferences))`
+- `val preferences = Preferences(MemoryKeyValueProvider())`
+
+You can even create your own implementation of the `KeyValueProvider`-interface and supply that to the `Preferences`-class!
 
 ## Compiling
 This project uses Maven. Therefore, all you need to do is the following:
