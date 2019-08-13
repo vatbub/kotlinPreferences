@@ -41,3 +41,18 @@ class PropertiesFileKeyValueProvider(val propertiesFile: File) : KeyValueProvide
 
     override fun get(key: String) = properties[key] as String?
 }
+
+class MemoryKeyValueProvider(val contents: MutableMap<String, String> = mutableMapOf()) : KeyValueProvider {
+    override fun set(key: String, value: String?) {
+        if (value == null) {
+            contents.remove(key)
+            return
+        }
+        contents[key] = value
+    }
+
+    override fun get(key: String) = contents[key]
+
+    override val isPersistent = false
+
+}
