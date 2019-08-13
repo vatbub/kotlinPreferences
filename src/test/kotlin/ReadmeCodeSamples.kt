@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-@file:Suppress("RedundantLambdaArrow", "unused")
+@file:Suppress("RedundantLambdaArrow", "unused", "UNUSED_VARIABLE")
 
 import com.github.vatbub.kotlin.preferences.Key
 import com.github.vatbub.kotlin.preferences.Preferences
