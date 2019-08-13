@@ -74,7 +74,7 @@ data class MyValue(val firstProperty: String = "", val secondProperty: Int = 0)
 object MyComplexSetting : Key<MyValue>(
         uniqueName = "myComplexSetting",
         defaultValue = MyValue(),
-        parser = { it: String -> // This method is called to convert a String into a MyVale-instance
+        parser = { it: String -> // This method is called to convert a String into a MyValue-instance
             val split = it.split(";")
             MyValue(split[0], split[1].toInt())
         },
