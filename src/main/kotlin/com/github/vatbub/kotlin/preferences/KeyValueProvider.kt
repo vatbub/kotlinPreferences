@@ -38,4 +38,9 @@ interface KeyValueProvider {
      * @return The value that is associated with [key] or `null` if no value was ever associated with [key]
      */
     operator fun get(key: String): String?
+
+    /**
+     * Shall always be `true` if the stored data is able to survive application restarts and `false` if not.
+     */
+    val isPersistent:Boolean
 }
