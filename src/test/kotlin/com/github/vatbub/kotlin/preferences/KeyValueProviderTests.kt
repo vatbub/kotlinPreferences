@@ -102,3 +102,10 @@ class MemoryKeyValueProviderTest : KeyValueProviderTest<MemoryKeyValueProvider>(
     override fun getCloneOf(keyValueProvider: MemoryKeyValueProvider) =
             MemoryKeyValueProvider(keyValueProvider.contents)
 }
+
+class SharedPreferencesKeyValueProviderTest : KeyValueProviderTest<SharedPreferencesKeyValueProvider>() {
+    override fun newKeyValueProvider() = SharedPreferencesKeyValueProvider(SharedPreferencesImpl())
+
+    override fun getCloneOf(keyValueProvider: SharedPreferencesKeyValueProvider) = SharedPreferencesKeyValueProvider(keyValueProvider.sharedPreferences)
+
+}

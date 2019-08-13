@@ -19,6 +19,7 @@
  */
 package com.github.vatbub.kotlin.preferences
 
+import android.content.SharedPreferences
 import java.io.File
 import java.util.*
 
@@ -58,4 +59,17 @@ class MemoryKeyValueProvider(val contents: MutableMap<String, String> = mutableM
 
     override val isPersistent = false
 
+}
+
+class SharedPreferencesKeyValueProvider(val sharedPreferences: SharedPreferences) : KeyValueProvider {
+    override fun set(key: String, value: String?) {
+        if (value == null) {
+            sharedPreferences.edit().remove(key).apply()
+            return
+        }
+        sharedPreferences.edit().putString(key, value).apply()
+    }
+
+    override fun get(key: String): String? = sharedPreferences.getString(key, null)
+    override val isPersistent = true
 }
