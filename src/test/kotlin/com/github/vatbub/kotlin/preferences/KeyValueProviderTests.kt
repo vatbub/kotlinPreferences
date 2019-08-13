@@ -45,6 +45,18 @@ abstract class KeyValueProviderTest<T : KeyValueProvider> {
     }
 
     @Test
+    fun setNullTest() {
+        val keyValueProvider = newKeyValueProvider()
+        val key = "sampleKey1"
+        val value = "value1"
+
+        keyValueProvider[key] = value
+        Assertions.assertEquals(value, keyValueProvider[key])
+        keyValueProvider[key] = null
+        Assertions.assertNull(keyValueProvider[key])
+    }
+
+    @Test
     fun persistenceTest() {
         val keyValueProvider1 = newKeyValueProvider()
         if (!keyValueProvider1.isPersistent) return

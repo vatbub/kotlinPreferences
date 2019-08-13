@@ -33,7 +33,10 @@ class PropertiesFileKeyValueProvider(val propertiesFile: File) : KeyValueProvide
     }
 
     override fun set(key: String, value: String?) {
-        properties[key] = value
+        if (value == null)
+            properties.remove(key)
+        else
+            properties[key] = value
         synchronized(propertiesFile) {
             propertiesFile.outputStream().use { properties.store(it, "This file stores the settings of one of your applications. Deleting it may partially or completely reset the corresponding application.") }
         }
