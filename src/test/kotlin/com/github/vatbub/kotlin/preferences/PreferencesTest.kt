@@ -22,9 +22,6 @@ package com.github.vatbub.kotlin.preferences
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
-/**
- * Greeting test case.
- */
 class PreferencesTest {
     @Test
     fun setTest() {
@@ -40,7 +37,7 @@ class PreferencesTest {
         preferences[dummyIntKey] = value
 
         Assertions.assertTrue(serializerCalled)
-        Assertions.assertEquals(value.toString(), keyValueProvider.contents[dummyIntKey.internalUniqueStringRepresentation])
+        Assertions.assertEquals(value.toString(), keyValueProvider.contents[dummyIntKey.uniqueName])
     }
 
     @Test
