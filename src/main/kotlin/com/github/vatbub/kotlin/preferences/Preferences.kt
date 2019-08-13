@@ -31,7 +31,7 @@ class Preferences(private val keyValueProvider: KeyValueProvider) {
      * @return The value associated with the key if it exists or `null` otherwise
      */
     fun <T> getIfExists(key: Key<T>): T? {
-        val stringValue = keyValueProvider[key.internalUniqueStringRepresentation] ?: return null
+        val stringValue = keyValueProvider[key.uniqueName] ?: return null
         return key.parser(stringValue)
     }
 
@@ -45,7 +45,7 @@ class Preferences(private val keyValueProvider: KeyValueProvider) {
     /**
      * Checks whether the specified key has a value associated with it.
      */
-    fun <T> containsKey(key: Key<T>) = keyValueProvider[key.internalUniqueStringRepresentation] != null
+    fun <T> containsKey(key: Key<T>) = keyValueProvider[key.uniqueName] != null
 
     /**
      * @see getOrDefault
@@ -60,7 +60,7 @@ class Preferences(private val keyValueProvider: KeyValueProvider) {
      */
     operator fun <T> set(key: Key<T>, value: T?) {
         val stringValue = if (value == null) null else key.serializer(value)
-        keyValueProvider[key.internalUniqueStringRepresentation] = stringValue
+        keyValueProvider[key.uniqueName] = stringValue
     }
 
     /**
