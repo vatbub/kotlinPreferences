@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package com.github.vatbub
+package com.github.vatbub.kotlin.preferences
 
 /**
  * The base class for keys used in the [Preferences]-class.

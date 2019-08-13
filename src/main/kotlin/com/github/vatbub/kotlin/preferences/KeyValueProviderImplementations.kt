@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package com.github.vatbub
+package com.github.vatbub.kotlin.preferences
 
 import java.io.File
 import java.util.*

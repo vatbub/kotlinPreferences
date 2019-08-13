@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package com.github.vatbub
+package com.github.vatbub.kotlin.preferences
 
 /**
  * This is an interface that wraps simple string-based key-value-stores.
