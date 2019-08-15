@@ -16,10 +16,12 @@ api to store any kind of object in a persistent (or even volatile) manner.
 <project>
     <repositories>
         <repository>
-            <snapshots/>
-            <id>snapshots</id>
-            <name>libs-snapshot</name>
-            <url>https://oss.jfrog.org/artifactory/libs-snapshot</url>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <id>bintray-vatbub-fokprojectsReleases</id>
+          <name>bintray</name>
+          <url>https://dl.bintray.com/vatbub/fokprojectsReleases</url>
         </repository>
     </repositories>
     
@@ -27,7 +29,7 @@ api to store any kind of object in a persistent (or even volatile) manner.
         <dependency>
             <groupId>com.github.vatbub</groupId>
             <artifactId>kotlinPreferences</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.0.1</version>
         </dependency>
     </dependencies>
 </project>
