@@ -13,36 +13,15 @@ api to store any kind of object in a persistent (or even volatile) manner.
 ## Download
 ### Maven
 ```xml
-<project>
-    <repositories>
-        <repository>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-          <id>bintray-vatbub-fokprojectsReleases</id>
-          <name>bintray</name>
-          <url>https://dl.bintray.com/vatbub/fokprojectsReleases</url>
-        </repository>
-    </repositories>
-    
-    <dependencies>
-        <dependency>
-            <groupId>com.github.vatbub</groupId>
-            <artifactId>kotlinPreferences</artifactId>
-            <version>0.0.1</version>
-        </dependency>
-    </dependencies>
-</project>
+<dependency>
+    <groupId>com.github.vatbub</groupId>
+    <artifactId>kotlinPreferences</artifactId>
+    <version>0.0.1</version>
+</dependency>
 ```
 
 ### Gradle
 ```groovy
-repositories {
-    maven {
-        url  "https://dl.bintray.com/vatbub/fokprojectsReleases"
-    }
-}
-
 implementation 'com.github.vatbub:kotlinPreferences:0.0.1'
 ```
 
@@ -117,7 +96,7 @@ Each of them is appropriate for different situations:
 |:-----------------------------------------------------------------------------------|:----------------------------------------------------------------------|:---------------------------------------------|
 | `PropertiesFileKeyValueProvider` (This is the provider used in the examples above) | Java/Kotlin desktop applications                                      | A Java `*.properties`-file                   |
 | `SharedPreferencesKeyValueProvider`                                                | Android applications                                                  | An instance of Android's `SharedPreferences` |
-| `MemoryKeyValueProvider`                                                           | Any Java/Kotlin application which does not require persistent storage | An plain old `HashMap`                       |
+| `MemoryKeyValueProvider`                                                           | Any Java/Kotlin application which does not require persistent storage | A plain old `HashMap`                        |
 
 Specifying the `KeyValueProvider` you want is easy, just do one of the following:
 - `val preferences = Preferences(PropertiesFileKeyValueProvider(File("mySettings.properties")))`
