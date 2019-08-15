@@ -23,6 +23,11 @@ import android.content.SharedPreferences
 import java.io.File
 import java.util.*
 
+/**
+ * Stores its data inside a Java-*.properties-file.
+ * @param propertiesFile The location of the file to read from and store the data in. If the file does not exist, it wil be created
+ * when calling [KeyValueProvider.set] for the first time.
+ */
 class PropertiesFileKeyValueProvider(val propertiesFile: File) : KeyValueProvider {
     override val isPersistent = true
     private val properties = Properties()
@@ -46,6 +51,10 @@ class PropertiesFileKeyValueProvider(val propertiesFile: File) : KeyValueProvide
     override fun get(key: String) = properties[key] as String?
 }
 
+/**
+ * Saves its contents in memory inside a [MutableMap].
+ * @param contents Map to store the data in
+ */
 class MemoryKeyValueProvider(val contents: MutableMap<String, String> = mutableMapOf()) : KeyValueProvider {
     override fun set(key: String, value: String?) {
         if (value == null) {
@@ -61,6 +70,10 @@ class MemoryKeyValueProvider(val contents: MutableMap<String, String> = mutableM
 
 }
 
+/**
+ * Use this when on Android. Stores its data inside the supplied [sharedPreferences].
+ * @param sharedPreferences The [SharedPreferences]-instance to store the data in.
+ */
 class SharedPreferencesKeyValueProvider(val sharedPreferences: SharedPreferences) : KeyValueProvider {
     override fun set(key: String, value: String?) {
         if (value == null) {
