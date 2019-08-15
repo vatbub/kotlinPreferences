@@ -35,6 +35,20 @@ api to store any kind of object in a persistent (or even volatile) manner.
 </project>
 ```
 
+### Gradle
+```groovy
+repositories {
+    maven {
+        url  "https://dl.bintray.com/vatbub/fokprojectsReleases"
+    }
+}
+
+implementation 'com.github.vatbub:kotlinPreferences:0.0.1'
+```
+
+### Manual download
+You can download the jar from the [Releases page](https://github.com/vatbub/kotlinPreferences/releases).
+
 ## Usage
 It's so simple:
 ```kotlin
