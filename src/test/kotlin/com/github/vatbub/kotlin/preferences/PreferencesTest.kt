@@ -26,10 +26,10 @@ class PreferencesTest {
     @Test
     fun setTest() {
         var serializerCalled = false
-        val dummyIntKey = object : Key<Int>("dummyIntKey", 12345, { it.toInt() }, {
+        val dummyIntKey = Key("dummyIntKey", 12345, { it.toInt() }, {
             serializerCalled = true
             it.toString()
-        }) {}
+        })
 
         val keyValueProvider = MemoryKeyValueProvider()
         val preferences = Preferences(keyValueProvider)
@@ -44,13 +44,13 @@ class PreferencesTest {
     fun setAndGetTest() {
         var serializerCalled = false
         var parserCalled = false
-        val dummyIntKey = object : Key<Int>("dummyIntKey", 12345, {
+        val dummyIntKey = Key("dummyIntKey", 12345, {
             parserCalled = true
             it.toInt()
         }, {
             serializerCalled = true
             it.toString()
-        }) {}
+        })
 
         val keyValueProvider = MemoryKeyValueProvider()
         val preferences = Preferences(keyValueProvider)
@@ -64,34 +64,34 @@ class PreferencesTest {
 
     @Test
     fun getIfExistsNonExistentKeyTest() {
-        val dummyIntKey = object : Key<Int>("dummyIntKey", 12345, { it.toInt() }, { it.toString() }) {}
+        val dummyIntKey = Key("dummyIntKey", 12345, { it.toInt() }, { it.toString() })
         Assertions.assertNull(Preferences(MemoryKeyValueProvider()).getIfExists(dummyIntKey))
     }
 
     @Test
     fun getOrDefaultNonExistentKeyTest() {
-        val dummyIntKey = object : Key<Int>("dummyIntKey", 12345, { it.toInt() }, { it.toString() }) {}
+        val dummyIntKey = Key("dummyIntKey", 12345, { it.toInt() }, { it.toString() })
         Assertions.assertEquals(dummyIntKey.defaultValue, Preferences(MemoryKeyValueProvider())[dummyIntKey])
     }
 
     @Test
     fun positiveContainsKeyTest() {
         val preferences = Preferences(MemoryKeyValueProvider())
-        val dummyIntKey = object : Key<Int>("dummyIntKey", 12345, { it.toInt() }, { it.toString() }) {}
+        val dummyIntKey = Key("dummyIntKey", 12345, { it.toInt() }, { it.toString() })
         preferences[dummyIntKey] = 567
         Assertions.assertTrue(preferences.containsKey(dummyIntKey))
     }
 
     @Test
     fun negativeContainsKeyTest() {
-        val dummyIntKey = object : Key<Int>("dummyIntKey", 12345, { it.toInt() }, { it.toString() }) {}
+        val dummyIntKey = Key("dummyIntKey", 12345, { it.toInt() }, { it.toString() })
         Assertions.assertFalse(Preferences(MemoryKeyValueProvider()).containsKey(dummyIntKey))
     }
 
     @Test
     fun positiveRemoveKeyTest() {
         val preferences = Preferences(MemoryKeyValueProvider())
-        val dummyIntKey = object : Key<Int>("dummyIntKey", 12345, { it.toInt() }, { it.toString() }) {}
+        val dummyIntKey = Key("dummyIntKey", 12345, { it.toInt() }, { it.toString() })
         val value = 567
         preferences[dummyIntKey] = value
         Assertions.assertTrue(preferences.containsKey(dummyIntKey))
@@ -102,7 +102,7 @@ class PreferencesTest {
     @Test
     fun negativeRemoveKeyTest() {
         val preferences = Preferences(MemoryKeyValueProvider())
-        val dummyIntKey = object : Key<Int>("dummyIntKey", 12345, { it.toInt() }, { it.toString() }) {}
+        val dummyIntKey = Key("dummyIntKey", 12345, { it.toInt() }, { it.toString() })
 
         Assertions.assertFalse(preferences.containsKey(dummyIntKey))
         Assertions.assertNull(preferences.removeKey(dummyIntKey))

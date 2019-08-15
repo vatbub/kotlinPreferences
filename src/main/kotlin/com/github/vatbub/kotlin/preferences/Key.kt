@@ -27,4 +27,4 @@ package com.github.vatbub.kotlin.preferences
  * @param parser A function that converts values from their string representation into their object representation. This function should be stateless.
  * @param serializer A function that converts values from their object representation to their string representation. Hint: `obj == key.parser(key.serializer(obj))` should always evaluate to `true`.
  */
-abstract class Key<T>(val uniqueName: String, val defaultValue: T, val parser: (String) -> T, val serializer: (T) -> String)
+open class Key<T>(val uniqueName: String, val defaultValue: T, val parser: (String) -> T, val serializer: (T) -> String)
