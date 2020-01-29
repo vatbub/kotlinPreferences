@@ -17,7 +17,7 @@ install:
 script:
   - mvn org.jacoco:jacoco-maven-plugin:prepare-agent verify sonar:sonar -DtrimStackTrace=false --settings travisMavenSettings.xml
 after_success:
-  - if $TRAVIS_BRANCH -eq "master" -a $TRAVIS_PULL_REQUEST -eq "false"; then mvn deploy; fi
+  - if [ "$TRAVIS_PULL_REQUEST" = "false" ] && [ "$TRAVIS_BRANCH" = "master" ]; then mvn deploy; fi
 notifications:
   email:
     recipients:
