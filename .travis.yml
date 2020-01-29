@@ -1,0 +1,26 @@
+language: java
+sudo: required
+git:
+  depth: false
+addons:
+  sonarcloud:
+    organization: "vatbub-github"
+jdk:
+  - openjdk8
+cache:
+  directories:
+    - "$HOME/.m2"
+install:
+  - wget https://s3.eu-central-1.amazonaws.com/vatbubjdk/jdk-8u191-linux-x64.tar.gz -nv
+  - tar -xf jdk-8u191-linux-x64.tar.gz
+  - export JAVA_HOME=/home/travis/build/vatbub/matchmaking/jdk1.8.0_191/
+script:
+  - mvn org.jacoco:jacoco-maven-plugin:prepare-agent verify sonar:sonar -DtrimStackTrace=false --settings travisMavenSettings.xml
+after_success:
+  - if $TRAVIS_BRANCH -eq "master" -a $TRAVIS_PULL_REQUEST -eq "false"; then mvn deploy; fi
+notifications:
+  email:
+    recipients:
+      - vatbub123+travisbuildnotification@googlemail.com
+    on_success: never
+on_failure: always
