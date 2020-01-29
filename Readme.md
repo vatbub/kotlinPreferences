@@ -1,4 +1,4 @@
-# kotlinPreferences
+# kotlinPreferences [![Build Status](https://travis-ci.org/vatbub/kotlinPreferences.svg?branch=master)](https://travis-ci.org/vatbub/kotlinPreferences)
 It's a problem we all know: Every application has at least some values 
 or user settings that it needs to store somehow and different platforms 
 have different solutions:
