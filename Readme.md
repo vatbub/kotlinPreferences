@@ -31,15 +31,15 @@ You can download the jar from the [Releases page](https://github.com/vatbub/kotl
 ## Usage
 It's so simple:
 ```kotlin
-import com.github.vatbub.kotlin.preferences.*
+import com.github.vatbub.kotlin.getPreferences.*
 import java.io.File
 
-// Do this somewhere globally, so that you have access to the preferences
+// Do this somewhere globally, so that you have access to the getPreferences
 // object everywhere
 
 // specify the backing storage (For Android see below!!)
-val keyValueProvider = PropertiesFileKeyValueProvider(File("mySettings.properties"))
-val preferences = Preferences(keyValueProvider)
+val getKeyValueProvider = PropertiesFileKeyValueProvider(File("mySettings.properties"))
+val getPreferences = Preferences(getKeyValueProvider)
 
 // Define keys
 object MyFirstSetting : Key<Int>(uniqueName = "myFirstSetting", defaultValue = 12345, parser = { it.toInt() }, serializer = { it.toString() })
@@ -49,14 +49,14 @@ object MySecondSetting : Key<Boolean>(uniqueName = "mySecondSetting", defaultVal
 
 // Save a preference
 // Typesafe, the compiler knows that this key only accepts Int
-preferences[MyFirstSetting] = 500
+getPreferences[MyFirstSetting] = 500
 
 // retrieve a preference (or its default value)
 // Typesafe, the compiler knows that this key always returns Int
-val value: Int = preferences[MyFirstSetting]
+val value: Int = getPreferences[MyFirstSetting]
 
 // optionally retrieve a preference
-val value: Int? = preferences.getIfExists(MyFirstSetting)
+val value: Int? = getPreferences.getIfExists(MyFirstSetting)
 ```
 
 But it doesn't stop there! You can save any kind of object, as long as 
@@ -77,11 +77,11 @@ object MyComplexSetting : Key<MyValue>(
         serializer = { it: MyValue -> "${it.firstProperty};${it.secondProperty}" })
 
 // setting this preference is as simple as saving any other preference
-preferences[MyComplexSetting] = MyValue("Hello", 12345)
+getPreferences[MyComplexSetting] = MyValue("Hello", 12345)
 
 // And retrieving this preference also works in the same way
-val value: MyValue = preferences[MyComplexSetting]
-val optionalValue: MyValue? = preferences.getIfExists(MyComplexSetting)
+val value: MyValue = getPreferences[MyComplexSetting]
+val optionalValue: MyValue? = getPreferences.getIfExists(MyComplexSetting)
 ``` 
 
 ### Choosing an appropriate backing storage (Android developers, listen up!)
@@ -99,9 +99,9 @@ Each of them is appropriate for different situations:
 | `MemoryKeyValueProvider`                                                           | Any Java/Kotlin application which does not require persistent storage | A plain old `HashMap`                        |
 
 Specifying the `KeyValueProvider` you want is easy, just do one of the following:
-- `val preferences = Preferences(PropertiesFileKeyValueProvider(File("mySettings.properties")))`
-- `val preferences = Preferences(SharedPreferencesKeyValueProvider(context.sharedPreferences))`
-- `val preferences = Preferences(MemoryKeyValueProvider())`
+- `val getPreferences = Preferences(PropertiesFileKeyValueProvider(File("mySettings.properties")))`
+- `val getPreferences = Preferences(SharedPreferencesKeyValueProvider(context.sharedPreferences))`
+- `val getPreferences = Preferences(MemoryKeyValueProvider())`
 
 You can even create your own implementation of the `KeyValueProvider`-interface and supply that to the `Preferences`-class!
 

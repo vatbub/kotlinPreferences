@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package com.github.vatbub.kotlin.preferences
+package com.github.vatbub.kotlin.preferences.android
 
 import android.content.SharedPreferences
 

@@ -19,7 +19,6 @@
  */
 package com.github.vatbub.kotlin.preferences
 
-import android.content.SharedPreferences
 import java.io.File
 import java.util.*
 
@@ -49,40 +48,4 @@ class PropertiesFileKeyValueProvider(val propertiesFile: File) : KeyValueProvide
     }
 
     override fun get(key: String) = properties[key] as String?
-}
-
-/**
- * Saves its contents in memory inside a [MutableMap].
- * @param contents Map to store the data in
- */
-class MemoryKeyValueProvider(val contents: MutableMap<String, String> = mutableMapOf()) : KeyValueProvider {
-    override fun set(key: String, value: String?) {
-        if (value == null) {
-            contents.remove(key)
-            return
-        }
-        contents[key] = value
-    }
-
-    override fun get(key: String) = contents[key]
-
-    override val isPersistent = false
-
-}
-
-/**
- * Use this when on Android. Stores its data inside the supplied [sharedPreferences].
- * @param sharedPreferences The [SharedPreferences]-instance to store the data in.
- */
-class SharedPreferencesKeyValueProvider(val sharedPreferences: SharedPreferences) : KeyValueProvider {
-    override fun set(key: String, value: String?) {
-        if (value == null) {
-            sharedPreferences.edit().remove(key).apply()
-            return
-        }
-        sharedPreferences.edit().putString(key, value).apply()
-    }
-
-    override fun get(key: String): String? = sharedPreferences.getString(key, null)
-    override val isPersistent = true
 }

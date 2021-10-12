@@ -24,7 +24,7 @@ import com.github.vatbub.kotlin.preferences.Preferences
 import com.github.vatbub.kotlin.preferences.PropertiesFileKeyValueProvider
 import java.io.File
 
-// Do this somewhere globally, so that you have access to the preferences
+// Do this somewhere globally, so that you have access to the getPreferences
 // object everywhere
 
 // specify the backing storage
