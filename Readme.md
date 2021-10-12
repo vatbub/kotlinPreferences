@@ -13,16 +13,28 @@ api to store any kind of object in a persistent (or even volatile) manner.
 ## Download
 ### Maven
 ```xml
+<!-- JVM apps -->
 <dependency>
     <groupId>com.github.vatbub</groupId>
     <artifactId>kotlinPreferences</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2-SNAPSHOT</version>
+</dependency>
+
+<!-- android apps -->
+<dependency>
+    <groupId>com.github.vatbub</groupId>
+    <artifactId>kotlinPreferences-android</artifactId>
+    <version>0.0.2-SNAPSHOT</version>
 </dependency>
 ```
 
 ### Gradle
 ```groovy
-implementation 'com.github.vatbub:kotlinPreferences:0.0.1'
+// JVM apps
+implementation 'com.github.vatbub:kotlinPreferences:0.0.2-SNAPSHOT'
+
+// android apps
+implementation 'com.github.vatbub:kotlinPreferences-android:0.0.2-SNAPSHOT'
 ```
 
 ### Manual download
