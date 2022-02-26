@@ -73,4 +73,6 @@ class Preferences(private val keyValueProvider: KeyValueProvider) {
         set(key, null)
         return previousValue
     }
+
+    fun <T> delegate(key: Key<T>) = PreferenceDelegate(this, key)
 }
