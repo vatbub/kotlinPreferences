@@ -11,9 +11,9 @@ cache:
   directories:
     - "$HOME/.m2"
 install:
-  - wget https://s3.eu-central-1.amazonaws.com/vatbubjdk/jdk-8u191-linux-x64.tar.gz -nv
-  - tar -xf jdk-8u191-linux-x64.tar.gz
-  - export JAVA_HOME=/home/travis/build/vatbub/kotlinPreferences/jdk1.8.0_191/
+  - wget https://s3.eu-central-1.amazonaws.com/vatbubjdk/OpenJDK21U-jdk_aarch64_linux_hotspot_21.0.8_9.tar.gz -nv
+  - tar -xf OpenJDK21U-jdk_aarch64_linux_hotspot_21.0.8_9.tar.gz
+  - export JAVA_HOME=/home/travis/build/vatbub/kotlinPreferences/jdk-21.0.8+9
 script:
   - mvn verify -DtrimStackTrace=false --settings travisMavenSettings.xml
 after_success:
